@@ -7,21 +7,52 @@
 </head>
 <body>
 <div id="app">
-    <input type="text">
+    <input type="text" v-model="searchName" placeholder="搜索指定用户名">
     <ul>
-        <li></li>
+        <li v-for="(p,index) in filterPersons" :key="index">
+            index:{{index}}--id:{{p.id}}--name:{{p.name}}--age:{{p.age}}
+        </li>
     </ul>
     <div>
-        <button>年龄升序</button>
-        <button>年龄降序</button>
-        <button>原本顺序</button>
+        <button @click="setOrderType(1)">年龄升序</button>
+        <button @click="setOrderType(2)">年龄降序</button>
+        <button @click="setOrderType(0)">原本顺序</button>
     </div>
 </div>
 <script type="text/javascript">
     const vm = new Vue({
         el: '#app',
         data: {
-
+            searchName: '',
+            orderType: 0, //0代表原本顺序 1代表年龄升序 2代表年龄降序
+            persons: [
+                {id: 1, name: "zhuanggb", age: 26},
+                {id: 2, name: "luorongl", age: 20},
+                {id: 3, name: "xiaoming", age: 18},
+                {id: 4, name: "xiaowang", age: 33}
+            ]
+        },
+        computed: {
+            filterPersons() {
+                const {persons, searchName, orderType} = this //获取数据
+                let fPersons
+                fPersons = persons.filter(p => p.name.indexOf(searchName) != -1) //过滤名字
+                if (orderType != 0){
+                    fPersons = fPersons.sort(function (p1,p2) { //年龄升降序
+                        if (orderType == 1){
+                            return p1.age - p2.age
+                        }else {
+                            return p2.age - p1.age
+                        }
+                    })
+                }
+                return fPersons
+            }
+        },
+        methods: {
+            setOrderType(orderType) {
+                this.orderType = orderType
+            }
         }
     })
 </script>
