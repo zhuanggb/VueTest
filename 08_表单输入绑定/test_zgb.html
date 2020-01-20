@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08_表单输入绑定_练习</title>
+</head>
+<body>
+<div id="app">
+    <form action="" @submit.prevent="handleSubmit">
+        <span>用户名: </span>
+        <input type="text" value="username" v-model="username">
+
+        <br>
+        <span>密码: </span>
+        <input type="password" value="pwd" v-model="pwd">
+
+        <br>
+        <span>性别: </span>
+        <input type="radio" id="male" value="男" v-model="sex">
+        <label for="male">男</label>
+        <input type="radio" id="female" value="女" v-model="sex">
+        <label for="female">女</label>
+
+        <br>
+        <span>爱好</span>
+        <input type="checkbox" value="篮球" id="basketball" v-model="likes">
+        <label for="basketball">篮球</label>
+        <input type="checkbox" value="足球" id="football" v-model="likes">
+        <label for="football">足球</label>
+        <input type="checkbox" value="排球" id="volleyball" v-model="likes">
+        <label for="volleyball">排球</label>
+
+        <br>
+        <span>城市: </span>
+        <select v-model="cityId">
+            <option value="">未选择</option>
+            <option :value="city.id" v-for="(city,index) in allCitys" :key="city.id">{{city.name}}</option>
+        </select><br>
+        <span>介绍: </span>
+        <textarea rows="10" v-model="info"></textarea><br>
+
+        <br>
+        <input type="submit" value="注册">
+    </form>
+</div>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            username: '',
+            pwd: '',
+            sex: '男',
+            likes: ['篮球', '足球'],
+            allCitys: [{id: 1, name: '海南'}, {id: 2, name: '上海'}, {id: 3, name: '北京'}],
+            cityId: 1,
+            info: '请介绍一下你的城市吧！'
+        },
+        methods: {
+            handleSubmit() {
+                console.info(this.username, this.pwd, this.sex, this.likes, this.allCitys, this.cityId, this.info)
+                alert('提交了ajax请求！')
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
