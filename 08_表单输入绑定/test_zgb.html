@@ -37,7 +37,7 @@
             <option :value="city.id" v-for="(city,index) in allCitys" :key="city.id">{{city.name}}</option>
         </select><br>
         <span>介绍: </span>
-        <textarea rows="10" v-model="info"></textarea><br>
+        <textarea rows="10" v-model="info" placeholder="请介绍一下你的家乡吧！"></textarea><br>
 
         <br>
         <input type="submit" value="注册">
@@ -54,12 +54,12 @@
             likes: ['篮球', '足球'],
             allCitys: [{id: 1, name: '海南'}, {id: 2, name: '上海'}, {id: 3, name: '北京'}],
             cityId: 1,
-            info: '请介绍一下你的城市吧！'
+            info: ''
         },
         methods: {
             handleSubmit() {
-                console.info(this.username, this.pwd, this.sex, this.likes, this.allCitys, this.cityId, this.info)
-                alert('提交了ajax请求！')
+                console.info(this.username, this.pwd, this.sex, this.likes, this.cityId, this.info)
+                //alert('提交了ajax请求！')
             }
         }
     })
