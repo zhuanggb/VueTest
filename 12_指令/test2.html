@@ -44,9 +44,9 @@
   // el: 指令所在的标签对象
   // binding: 包含指令相关数据的容器对象
   Vue.directive('upper-text', function (el, binding) {
-    console.log(el, binding)
+    console.log(el, binding);
     el.textContent = binding.value.toUpperCase()
-  })
+  });
   new Vue({
     el: '#test',
     data: {
@@ -55,12 +55,12 @@
     // 注册局部指令
     directives: {
       'lower-text'(el, binding) {
-        console.log(el, binding)
+        console.log(el, binding);
         el.textContent = binding.value.toLowerCase()
       }
     }
 
-  })
+  });
 
   new Vue({
     el: '#test2',
